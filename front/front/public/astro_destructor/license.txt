@@ -1,0 +1,11 @@
+Model Information:
+* title:	Astro Destructor
+* source:	https://sketchfab.com/3d-models/astro-destructor-a030380cb9c948a7954597e879d1e9c0
+* author:	Daneiix (https://sketchfab.com/DaneiixSkibidi)
+
+Model License:
+* license type:	CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
+* requirements:	Author must be credited. Commercial use is allowed.
+
+If you use this 3D model in your project be sure to copy paste this credit wherever you share it:
+This work is based on "Astro Destructor" (https://sketchfab.com/3d-models/astro-destructor-a030380cb9c948a7954597e879d1e9c0) by Daneiix (https://sketchfab.com/DaneiixSkibidi) licensed under CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
