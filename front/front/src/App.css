@@ -1,42 +1,95 @@
-#root {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 2rem;
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.main {
+  background-color: aqua;
+  width: 100wh;
+  height: 103vh;
+  position: relative;
+}
+
+.title {
+  color: aliceblue;
+  user-select: none;
+  position: absolute;
+  top: 80%;
+  right: 50%;
+  transform: translate(50%, -50%);
+  font-size: 9rem;
+  z-index: 1000;
+}
+
+.logos {
+  width: 3%;
+  height: 90vh;
+  overflow: hidden;
+  position: absolute;
+  position: fixed;
+  z-index: 1000;
+  left: 50px;
+  bottom: 0;
+  background-color: #dcc70a;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.logos-slide {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  animation: slide 30s linear infinite;
+}
+
+.test {
+  user-select: none;
+  font-size: 1.2rem;
+  font-size: 45px;
+  color: #ffffff;
+  font-weight: bold;
+  transform: rotate(-90deg);
+  transform-origin: center;
+  margin: 100px 0;
+  white-space: nowrap;
+}
+
+.claim-div {
+  position: absolute;
+  z-index: 1000;
+  right: 10px;
+  margin-right: 90px;
+  top: 40%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.claim-text {
+  color: #ffffff;
+  user-select: none;
+  max-width: 290px;
   text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-  transition: filter 300ms;
-}
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
-}
-.logo.react:hover {
-  filter: drop-shadow(0 0 2em #61dafbaa);
+.claim-text1 {
+  color: #ffffff;
+  user-select: none;
+  padding-bottom: 30px;
+  font-size: 40px;
 }
 
-@keyframes logo-spin {
+@keyframes slide {
   from {
-    transform: rotate(0deg);
+    transform: translateY(0);
   }
   to {
-    transform: rotate(360deg);
+    transform: translateY(-100%);
   }
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  a:nth-of-type(2) .logo {
-    animation: logo-spin infinite 20s linear;
-  }
-}
-
-.card {
-  padding: 2em;
-}
-
-.read-the-docs {
-  color: #888;
 }

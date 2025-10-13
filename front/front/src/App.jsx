@@ -1,11 +1,11 @@
 import { Canvas, useFrame } from '@react-three/fiber';
 import { useRef, useState, useEffect } from 'react';
-import { OrbitControls, SpotLight, useHelper, useGLTF } from '@react-three/drei';
+import { OrbitControls, SpotLight, useHelper, useGLTF, Text } from '@react-three/drei';
 import { useControls } from 'leva';
 import { SpotLightHelper, MeshStandardMaterial } from 'three';
-// import { SceneText } from './play';
-import SceneTextWithCapture from "./play";
-
+import './App.css'
+import Infinite from './infinite.jsx';
+import Claim from './claim.jsx'
 
 
 function Model({ rotationAngle }) {
@@ -154,26 +154,52 @@ function App() {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  return <SceneTextWithCapture />;
+  const [scrollY, setScrollY] = useState(0);
+  useEffect(() => {
+    const handleScroll = () => {
+      setScrollY(window.scrollY);
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+  const showText = scrollY < 15;
+  const textOpacity = Math.max(0, 1 - scrollY / 10);
+
+  return (
+    <div className='main'>
+          {showText && (<h1 className='title' style={{opacity:textOpacity}}>NXTGNX</h1>)}
+        <Infinite/>
+        {showText && (<Claim value={textOpacity}/>)}
+        <div style={{position: 'absolute'}}>
+          <Canvas shadows style={{ backgroundColor: '#000000', position: 'fixed', top: 0, left: 0 }}>
+            <ambientLight intensity={ambientIntensity} color={0xEDD798} />
+            
+            <pointLight position={[10, 10, 10]} intensity={pointIntensity} color={0xE5B412} />
+            <pointLight position={[-10, 10, -10]} intensity={pointIntensity * 0.8} color={0xE5B412} />
+            <pointLight position={[0, -5, 0]} intensity={pointIntensity * 0.6} color={0xE5B412} />
+
+            {showText && (
+              <Text 
+                fontSize={1.5} 
+                color={'#FFBB00'}
+                depth={10}
+                material-transparent={true}
+                material-opacity={textOpacity}
+              >
+                勝つために{'\n'}
+                プレーする
+              </Text>
+            )}
+            
+            {/* <axesHelper args={[10]} /> */}
+            {/* <LightWithHelper modelPosition={scrollY ? { x: 0, y: (scrollY * 0.01), z: scrollY * 0.002 } : { x: 0, y: -5, z: 0 }} /> */}
+            <OrbitControls enableZoom={false} enablePan={false} enableRotate={false}  /> 
+            <Model rotationAngle={rotationAngle}/>
+          </Canvas> 
+        </div>
+      </div>
+  );
 }
 
 export default App;
-// <div>
-//   <Canvas shadows style={{ background: '#000000', position: 'fixed', top: 0, left: 0 }}>
-//     {/* Very bright ambient light */}
-//     <ambientLight intensity={ambientIntensity} color={0xEDD798} />
-    
-//     {/* Multiple point lights from different angles */}
-//     <pointLight position={[10, 10, 10]} intensity={pointIntensity} color={0xE5B412} />
-//     <pointLight position={[-10, 10, -10]} intensity={pointIntensity * 0.8} color={0xE5B412} />
-//     <pointLight position={[0, -5, 0]} intensity={pointIntensity * 0.6} color={0xE5B412} />
-    
-//     {/* <axesHelper args={[10]} /> */}
-//     {/* <LightWithHelper modelPosition={scrollY ? { x: 0, y: (scrollY * 0.01), z: scrollY * 0.002 } : { x: 0, y: -5, z: 0 }} /> */}
-//     <OrbitControls enableZoom={false} enablePan={false} enableRotate={false}  /> 
-//     <Model rotationAngle={rotationAngle}/>
-//   </Canvas>
-//   <div style={{ height: '105vh', position: 'relative', zIndex: 1 }} />
-
-  
-// </div>
