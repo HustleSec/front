@@ -1,11 +1,15 @@
+@import url('https://fonts.googleapis.com/css2?family=Zen+Dots&display=swap');
+
+
 * {
   margin: 0;
   padding: 0;
+  font-family: 'Zen Dots', sans-serif;
   box-sizing: border-box;
 }
 
 .main {
-  background-color: aqua;
+  background-color: rgb(0, 0, 0);
   width: 100wh;
   height: 103vh;
   position: relative;
@@ -46,8 +50,7 @@
 
 .test {
   user-select: none;
-  font-size: 1.2rem;
-  font-size: 45px;
+  font-size: 30px;
   color: #ffffff;
   font-weight: bold;
   transform: rotate(-90deg);
@@ -92,4 +95,371 @@
   to {
     transform: translateY(-100%);
   }
+}
+
+.text2 {
+  user-select: none;
+  position: absolute;
+  z-index: 1000;
+  color: #ffffff;
+  bottom: 770px;
+  left: 300px;
+  width: 60vw;
+  font-size: 70px;
+}
+
+.text3 {
+  user-select: none;
+  position: absolute;
+  z-index: 1000;
+  color: #ffffff;
+  bottom: 400px;
+  width: 20vw;
+  text-align: center;
+  left: 1000px;
+  font-size: 26px;
+}
+
+.text4 {
+  user-select: none;
+  position: absolute;
+  z-index: 1000;
+  color: #ffffff;
+  bottom: 100px;
+  width: 15vw;
+  font-size: 26px;
+  text-align: center;
+  left:13%;
+}
+
+@keyframes spin {
+  0% {
+    transform: translate(-50%, -50%) rotate(0deg);
+  }
+  100% {
+    transform: translate(-50%, -50%) rotate(360deg);
+  }
+}
+
+.navbar {
+  z-index: 10;
+  position: fixed;
+  /* background-color: #dcc70a; */
+  width: 100vw;
+  height: 100px;
+  display: flex;
+  flex-direction: row;
+  text-align: center;
+  align-items: center;
+  justify-content: space-around;
+  /* background-color: aqua; */
+}
+
+.logo {
+  /* margin-left: 2%;
+  margin-right: 10%; */
+  user-select: none ;
+  flex: 0.5;
+  font-size: 80px;
+  color: #ffffff;
+  text-align: left;
+  padding-left: 3rem;
+}
+
+.elements {
+  left: 0;
+  padding-top: 37px;
+  /* width: 80vw; */
+  flex: 2;
+  display: flex;
+  align-items: center;
+  height: 100%;
+  gap: 10rem;
+  justify-content: center;
+}
+
+.play1 {
+  flex: 0.5;
+  /* height: 200px; adjust to control the size  */
+  clip-path: polygon( 0% 50%,100% 50%,90.26% 100%,10.714% 100%,0% 50%,100% 50%,89.286% 0%,9.74% 0%,0% 50%,100% 50% );
+  /* background: #3B8686; */
+  height: 75%;
+  align-items: center;
+  justify-content: center;
+}
+
+.play{
+  user-select: none;
+  width: 100%;
+  height: 100%;
+  background-color: #dcc70a;
+  border: #dcc70a;
+  color: #ffffff;
+  align-items: center;
+  justify-content: center;
+  font-size: 25px;
+}
+
+.link{
+  user-select: none;
+  height: 100%;
+  color: #ffffff;
+  font-size: 25px;
+  text-decoration: none;
+}
+
+.us {
+  height: 100vh;
+  position: relative;
+  /* background-color: black; */
+  background-color: #000000;
+}
+
+.info {
+  display: flex;
+  position: absolute;
+  height: 350px;
+  top: 12rem;
+  padding: 20px;
+  width: 700px;
+  margin-left: 200px;
+  background-color: #393939;
+  border-radius: 25px;
+  gap: 20px;
+}
+
+.morph {
+  right: 0;
+  background-color: aqua;
+  width: 50%;
+  height: 100%;
+  border-radius: 15px;
+}
+
+.user {
+  border-radius: 15px;
+  width: 50%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.info1 {
+  height: 80%;
+  border-radius: 20px;
+  color: #ffffff;
+  align-items: center;
+  text-align: center;
+  font-size: 19px;
+  user-select: none;
+
+}
+
+.xgen {
+  background-color:#FFE607;
+  height: 15%;
+  border-radius: 50px;
+  display: flex;
+  padding: 10px;
+  gap: 10px;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.inside {
+  width: 70%;
+  background-color: #000000;
+  border-radius: 25px;
+  color: #ffffff;
+  user-select: none;
+  height: 26px;
+  text-align: center;
+}
+
+.x {
+  background-color: #000000;
+  width: 20%;
+  height: 100%;
+  user-select: none;
+  text-align: center;
+  color: #ffffff;
+  font-size: 20px;
+  border-radius: 100%;
+}
+
+.start {
+  clip-path: polygon( 50% 0%,50% 0%,58.11% 0.127%,65.804% 0.496%,72.978% 1.085%,79.529% 1.876%,85.355% 2.848%,90.353% 3.981%,94.419% 5.255%,97.451% 6.65%,99.346% 8.146%,100% 9.723%,100% 9.723%,99.557% 11.021%,98.268% 12.268%,96.188% 13.45%,93.376% 14.559%,89.887% 15.583%,85.779% 16.51%,81.108% 17.33%,75.932% 18.032%,70.307% 18.604%,64.29% 19.037%,64.29% 100%,28.57% 100%,28.57% 18.506%,28.57% 18.506%,23.666% 17.985%,19.114% 17.365%,14.952% 16.653%,11.218% 15.857%,7.953% 14.983%,5.194% 14.04%,2.98% 13.035%,1.351% 11.975%,0.344% 10.869%,0% 9.723%,0% 9.723%,0.654% 8.146%,2.549% 6.65%,5.581% 5.255%,9.647% 3.981%,14.645% 2.848%,20.471% 1.876%,27.022% 1.085%,34.196% 0.496%,41.89% 0.127%,50% 0% );
+  background-color: #484848;
+  width: 1.5%;
+  height: 25%;
+}
+
+.start-info {
+  user-select: none;
+  padding-left: 20px;
+  position: absolute;
+  width: 27%;
+  height: 10%;
+  top: 44%;
+  margin-left: 8%;
+  display: flex;
+  flex-direction: row;
+  gap: 40px;
+}
+
+.date-info {
+  user-select: none;
+  color: white;
+  width: 100%;
+}
+
+.start-date {
+  right: 10%;
+  width: 100%;
+  user-select: none;
+  padding-left: 60px;
+  color: #9D9D9D;
+}
+
+.start1 {
+  clip-path: polygon( 50% 0%,50% 0%,58.11% 0.127%,65.804% 0.496%,72.978% 1.085%,79.529% 1.876%,85.355% 2.848%,90.353% 3.981%,94.419% 5.255%,97.451% 6.65%,99.346% 8.146%,100% 9.723%,100% 9.723%,99.557% 11.021%,98.268% 12.268%,96.188% 13.45%,93.376% 14.559%,89.887% 15.583%,85.779% 16.51%,81.108% 17.33%,75.932% 18.032%,70.307% 18.604%,64.29% 19.037%,64.29% 100%,28.57% 100%,28.57% 18.506%,28.57% 18.506%,23.666% 17.985%,19.114% 17.365%,14.952% 16.653%,11.218% 15.857%,7.953% 14.983%,5.194% 14.04%,2.98% 13.035%,1.351% 11.975%,0.344% 10.869%,0% 9.723%,0% 9.723%,0.654% 8.146%,2.549% 6.65%,5.581% 5.255%,9.647% 3.981%,14.645% 2.848%,20.471% 1.876%,27.022% 1.085%,34.196% 0.496%,41.89% 0.127%,50% 0% );
+  background-color: #ffffff;
+  width: 1.5%;
+  height: 25%;
+}
+
+.start-info1 {
+  user-select: none;
+  padding-left: 30px;
+  position: absolute;
+  width: 27%;
+  height: 10%;
+  top: 52%;
+  margin-left: 7.5%;
+  display: flex;
+  flex-direction: row;
+  gap: 40px;
+}
+
+.date-info1 {
+  user-select: none;
+  color: white;
+  width: 100%;
+}
+
+.start-date1 {
+  user-select: none;
+  right: 10%;
+  /* background-color: #dcc70a; */
+  width: 100%;
+  /* right: 0; */
+  padding-left: 60px;
+  color: #9D9D9D;
+}
+
+.container {
+  position: absolute;
+  width: 27%;
+  height: 7%;
+  top: 60%;
+  margin-left: 8%;
+}
+
+.container2 {
+  display: flex;
+  gap: 2rem;
+  flex-direction: row;
+  display: flex;
+  
+  justify-content: space-around;
+}
+.first-role {
+  user-select: none;
+  background-color: #3E3E3E;
+  font-size: small;
+  color: #ffffff;
+  width: 40%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 25px;
+}
+
+.second-role {
+  user-select: none;
+  display: flex;
+  height: 35px;
+  font-size: small;
+  color: #ffffff;
+  align-items: center;
+  justify-content: center;
+  background-color: #3E3E3E;
+  width: 30%;
+  border-radius: 25px;
+  align-items: center;
+}
+
+.container2 {
+  padding-top: 15px;
+}
+
+.first-role1 {
+  user-select: none;
+  background-color: #3E3E3E;
+  font-size: small;
+  display: flex;
+
+  color: #ffffff;
+  width: 10%;
+  align-items: center;
+  justify-content: center;
+  border-radius: 25px;
+}
+
+.second-role2 {
+  height: 35px;
+  font-size: small;
+  display: flex;
+
+  color: #ffffff;
+  text-align: center;
+  background-color: #3E3E3E;
+  width: 30%;
+  border-radius: 25px;
+  align-items: center;
+  justify-content: center;
+  user-select: none;
+}
+
+.second-role3 {
+  height: 35px;
+  font-size: small;
+  color: #ffffff;
+  background-color: #3E3E3E;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 30%;
+  border-radius: 25px;
+  align-items: center;
+  justify-content: center;
+  user-select: none;
+}
+
+.name {
+  /* background-color: #dcc70a; */
+  position: absolute;
+  width: 27%;
+  height: 20%;
+  top: 70%;
+  margin-left: 8%;
+}
+
+.user-name {
+
+  color: #ffffff;
+  height: 100%;
+  padding-top: 80px;
+  font-size: 70px;
 }

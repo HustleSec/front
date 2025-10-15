@@ -5,7 +5,7 @@ export default function Claim({value})
 	return (
 		<div className='claim-div'>
 			<h1 className='claim-text1' style={{opacity: value}}>
-				CLAME VICTORY<br/>
+				CLAIM VICTORY<br/>
 			</h1>
 			<h2 className='claim-text' style={{opacity: value}}>
 				Get ready to serve, smash, and spin your way  <br/>

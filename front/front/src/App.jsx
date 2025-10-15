@@ -5,7 +5,10 @@ import { useControls } from 'leva';
 import { SpotLightHelper, MeshStandardMaterial } from 'three';
 import './App.css'
 import Infinite from './infinite.jsx';
-import Claim from './claim.jsx'
+import Claim from './claim.jsx';
+import Circular from './circular.jsx';
+import ReactCurvedText from 'react-curved-text';
+import { div } from 'three/tsl';
 
 
 function Model({ rotationAngle }) {
@@ -33,7 +36,7 @@ function Model({ rotationAngle }) {
     const targetPosY = rotationAngle > 0 ? -2 : 0;
 
     modelRef.current.position.x += (targetPosX - modelRef.current.position.x) * 0.08;
-    modelRef.current.position.y += (targetPosY  - modelRef.current.position.y) * 0.08;
+    modelRef.current.position.y += (targetPosY - modelRef.current.position.y) * 0.08;
   });
 
   scene.traverse((child) => {
@@ -50,86 +53,7 @@ function Model({ rotationAngle }) {
 }
 
 
-function LightWithHelper({ modelPosition }) {
-  const light = useRef();
-
-  const { angle, penumbra, intensity, distX, distY, distZ } = useControls({
-    angle: Math.PI / 3,
-    penumbra: {
-      value: 10,
-      min: 0.0,
-      max: 1.0,
-      step: 0.1,
-    },
-    intensity: {
-      value: 150,
-      min: 0,
-      max: 200,
-      step: 5,
-    },
-    distX: {
-      value: 3,
-      min: -20,
-      max: 20,
-      step: 1,
-    },
-    distY: {
-      value: 6,
-      min: 0,
-      max: 20,
-      step: 1,
-    },
-    distZ: {
-      value: 3,
-      min: -20,
-      max: 20,
-      step: 1,
-    },
-  });
-  
-  useHelper(light, SpotLightHelper, 'yellow');
-
-  useFrame(() => {
-    if (light.current && modelPosition) {
-      // Light follows object with offset
-      light.current.position.x = modelPosition.x + distX;
-      light.current.position.y = modelPosition.y + distY;
-      light.current.position.z = modelPosition.z + distZ;
-      
-      // Light looks at object
-      light.current.target.position.copy(modelPosition);
-      light.current.target.updateMatrixWorld();
-    }
-  });
-  
-  return (
-    <SpotLight
-      ref={light}
-      angle={angle}
-      penumbra={penumbra}
-      intensity={intensity}
-      color={0xfaee02}
-      castShadow
-      decay={1}
-    />
-  );
-}
-
 function App() {
-  const { ambientIntensity, pointIntensity } = useControls({
-    ambientIntensity: {
-      value: 150,
-      min: 0,
-      max: 5,
-      step: 0.1,
-    },
-    pointIntensity: {
-      value: 160,
-      min: 0,
-      max: 200,
-      step: 5,
-    },
-  });
 
   const [oldScrollY, setOldScrollY] = useState(0);
   const [rotationAngle, setRotationAngle] = useState(0);
@@ -138,7 +62,7 @@ function App() {
     const handleScroll = () => {
       setOldScrollY(prevScrollY => {
         const delta = window.scrollY - prevScrollY;
-  
+
         if (delta > 10) {
           setRotationAngle(250);
           return window.scrollY;
@@ -164,24 +88,69 @@ function App() {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
   const showText = scrollY < 15;
+  const deleteText = scrollY > 400;
   const textOpacity = Math.max(0, 1 - scrollY / 10);
+  const textOpacity2 = Math.min(scrollY / 10, 1);
 
   return (
-    <div className='main'>
-          {showText && (<h1 className='title' style={{opacity:textOpacity}}>NXTGNX</h1>)}
-        <Infinite/>
-        {showText && (<Claim value={textOpacity}/>)}
-        <div style={{position: 'absolute'}}>
+    <div>
+      <div className='main'>
+        <div className='navbar'>
+          <h1 className='logo'>NTX</h1>
+          <div className='elements'>
+            <a href="#" className='link home'>Home</a>
+            <a href="#" className='link about'>About us</a>
+            <a href="#" className='link Play To win'>Play To Win</a>
+          </div>
+          <div className='play1'>
+            <button className='play'> Start Now </button>
+          </div>
+        </div>
+        {showText && (<h1 className='title' style={{ opacity: textOpacity }}>NXTGNX</h1>)}
+        <Infinite />
+        {showText && (<Claim value={textOpacity} />)}
+        {!showText && (
+          <div
+            style={{
+              position: "absolute",
+              top: "80%",
+              left: "25%",
+              transform: "translate(-50%, -50%)",
+              zIndex: 10,
+              userSelect: 'none',
+            }}
+          >
+            <Circular />
+          </div>
+        )}
+        {!showText && (
+          <div
+            style={{
+              position: "absolute",
+              top: "97%",
+              left: "60%",
+              transform: "translate(-50%, -50%)",
+              zIndex: 10,
+              userSelect: 'none',
+            }}
+          >
+            <Circular />
+          </div>
+        )}
+        {!showText && (<h1 style={{ opacity: textOpacity2 }} className='text2'>Do you have what it takes to become the ultimate ping pong champion?</h1>)}
+        {!showText && (<h3 className='text3'>go head-to-head with friends in real-time online matches. Whether you’re just starting out or a pro, enjoy fast-paced action, smooth controls, and endless fun—right in your browser!</h3>)}
+        {!showText && (<h3 className='text4'>Challenge yourself with our AI-powered ping pong game that adapts to your skill level. </h3>)}
+        <div style={{ position: 'absolute' }}>
           <Canvas shadows style={{ backgroundColor: '#000000', position: 'fixed', top: 0, left: 0 }}>
-            <ambientLight intensity={ambientIntensity} color={0xEDD798} />
-            
-            <pointLight position={[10, 10, 10]} intensity={pointIntensity} color={0xE5B412} />
-            <pointLight position={[-10, 10, -10]} intensity={pointIntensity * 0.8} color={0xE5B412} />
-            <pointLight position={[0, -5, 0]} intensity={pointIntensity * 0.6} color={0xE5B412} />
+            <ambientLight intensity={5} color={0xEDD798} />
+
+            <pointLight position={[10, 10, 10]} intensity={160} color={0xE5B412} />
+            <pointLight position={[-10, 10, -10]} intensity={160 * 0.8} color={0xE5B412} />
+            <pointLight position={[0, -5, 0]} intensity={160 * 0.6} color={0xE5B412} />
 
             {showText && (
-              <Text 
-                fontSize={1.5} 
+              <Text
+                fontSize={1.5}
                 color={'#FFBB00'}
                 depth={10}
                 material-transparent={true}
@@ -191,14 +160,81 @@ function App() {
                 プレーする
               </Text>
             )}
-            
-            {/* <axesHelper args={[10]} /> */}
-            {/* <LightWithHelper modelPosition={scrollY ? { x: 0, y: (scrollY * 0.01), z: scrollY * 0.002 } : { x: 0, y: -5, z: 0 }} /> */}
-            <OrbitControls enableZoom={false} enablePan={false} enableRotate={false}  /> 
-            <Model rotationAngle={rotationAngle}/>
-          </Canvas> 
+
+            <Model rotationAngle={rotationAngle} />
+          </Canvas>
         </div>
       </div>
+      <div className='us'>
+        <div className='info'>
+          <div className='morph'>
+            <h1>1</h1>
+          </div>
+          <div className='user'>
+            <div className='info1'>
+              <span>
+                  I'm a Penetration Tester and Bug Bounty Hunter, 
+                  specializing in discovering vulnerabilities. 
+                  As a Software Engineer blending development 
+                  and security expertise to ensure robust solutions from the ground up.
+              </span>
+            </div>
+            <div className='xgen'>
+              <div className='inside'>
+                  <h3>NEXTGNX</h3>
+              </div>
+              <div className='x'>
+                  <h3>X</h3>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div>
+          <div className='start-info'>
+            <div className='start'></div>
+            <div className='date-info'>
+                <h5>
+                  2025-07-01
+                </h5>
+                <h5 className='start-date'>
+                  start design
+                </h5>
+            </div>
+          </div>
+
+          <div className='start-info1'>
+            <div className='start1'></div>
+            <div className='date-info1'>
+                <h5>
+                  2025-11-10
+                </h5>
+                <h5 className='start-date1'>
+                  finish the project
+                </h5>
+            </div>
+            </div>
+      </div>
+
+      <div className='container'>
+        <div className='container2'>
+            <div className='first-role'><span>Design Of The Application</span></div>
+            <div className='second-role'><span>Front</span></div>
+        </div>
+        <div className='container2'>
+            <div className='first-role1'><span>Back</span></div>
+            <div className='second-role2'><span>User Management</span></div>
+            <div className='second-role3'><span>Cyber Security</span></div>
+        </div>
+      </div>
+
+      <div className='name'>
+            <h1 className='user-name'>
+            Younes<br/> BELLAKRIDI
+            </h1>
+      </div>
+          
+      </div>
+    </div>
   );
 }
 
